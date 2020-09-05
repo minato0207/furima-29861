@@ -7,7 +7,7 @@
 | nickname          | string | null: false   |
 | email             | string | null: false   |
 | password          | string | null: false   |
-| birthday          | datetime | null: false |
+| birthday          | date   | null: false   |
 | last_name         | string | null: false   |
 | first_name        | string | null: false   |
 | last_name_kana    | string | null: false   |
@@ -17,53 +17,52 @@
 
 ### Association
 
-- has_many :item
-- has_one :purchase
+- has_many :items
+- has_many :purchases
 
 ## items テーブル
 
 | Column            | Type     | Options                        |
 | ----------------- | -------- | ------------------------------ |
 | name              | string   | null: false                    |
-| category          | string   | null: false                    |
+| category_id       | integer  | null: false                    |
 | price             | integer  | null: false                    |
-| exhibitor         | string   | null: false                    |
-| status            | string   | null: false                    |
-| area              | integer  | null: false                    | 
-| day_standard      | datetime | null: false                    |
-| user_id           |integer   | null: false, foreign_key: true |
-| address_id        |integer   | null: false, foreign_key: true |
-
+| text              | text     | null: false                    |
+| status_id         | integer  | null: false                    |
+| area_id           | integer  | null: false                    |
+| day_standard_id   | integer  | null: false                    |
+| delivery_fee_id   | integer  | null: false                    |
+| user_id           | integer  | null: false, foreign_key: true |
 ### Association
 
-- belongs_to :user
-- belongs_to :address
+- belongs_to : user
+- has_one : purchase 
+
 
 ## addresses テーブル
 
-| Column       | Type       | Options     |
-| ------       | ---------- | ----------- |
-| zip          | integer    | null: false |
-| prefecture   | string     | null: false | 
-| city         | string     | null: false |
-| address      | string     | null: false |
-| build-name   | string     | null: false |
-| phone-call   | integer    | null: false |
+| Column        | Type       | Options                        |
+| ------------- | ---------- | ------------------------------ |
+| zip           | integer    | null: false                    |
+| prefecture_id | integer    | null: false                    | 
+| city          | string     | null: false                    |
+| address       | string     | null: false                    |
+| build_name    | string     |                                |
+| phone_call    | integer    | null: false                    |
+| purchase_id   | integer    | null: false, foreign_key: true |
 ### Association
 
-- has_many :items
-- has_one :purchase
+- belongs_to :purchase
 
 
 
 ## purchases テーブル
-| Column     | Type     | Options     |
-| --------   | ------   | ----------- |
-| card_number| integer  | null: false |
-| x_day      | datetime | null: false |
-| cvc        | integer  | null: false |
-
+| Column     | Type     | Options                        |
+| --------   | ------   | ------------------------------ |
+| user_id    | integer  | null: false, foreign_key: true | 
+| item_id    | integer  | null: false, foreign_key: true | 
 ### Association
+has_one :address
+belongs_to : user
+belongs_to : item
 
-- has_one :user
-- has_one :address
