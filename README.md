@@ -43,12 +43,12 @@
 
 | Column        | Type       | Options                        |
 | ------------- | ---------- | ------------------------------ |
-| zip           | integer    | null: false                    |
+| zip           | string     | null: false                    |
 | prefecture_id | integer    | null: false                    | 
 | city          | string     | null: false                    |
 | address       | string     | null: false                    |
 | build_name    | string     |                                |
-| phone_call    | integer    | null: false                    |
+| phone_call    | string     | null: false                    |
 | purchase_id   | integer    | null: false, foreign_key: true |
 ### Association
 
