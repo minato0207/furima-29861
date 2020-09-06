@@ -3,5 +3,9 @@ class ItemsController < ApplicationController
     # @items = Item.all
   end
 
+  def new
+  end
+
+
 
 end
