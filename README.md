@@ -1,24 +1,68 @@
-# README
+# テーブル設計
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## users テーブル
 
-Things you may want to cover:
+| Column            | Type   | Options       |
+| ----------------- | ------ | -----------   |
+| nickname          | string | null: false   |
+| email             | string | null: false   |
+| password          | string | null: false   |
+| birthday          | date   | null: false   |
+| last_name         | string | null: false   |
+| first_name        | string | null: false   |
+| last_name_kana    | string | null: false   |
+| first_name_kana   | string | null: false   |
 
-* Ruby version
 
-* System dependencies
 
-* Configuration
+### Association
 
-* Database creation
+- has_many :items
+- has_many :purchases
 
-* Database initialization
+## items テーブル
 
-* How to run the test suite
+| Column            | Type     | Options                        |
+| ----------------- | -------- | ------------------------------ |
+| name              | string   | null: false                    |
+| category_id       | integer  | null: false                    |
+| price             | integer  | null: false                    |
+| text              | text     | null: false                    |
+| status_id         | integer  | null: false                    |
+| area_id           | integer  | null: false                    |
+| day_standard_id   | integer  | null: false                    |
+| delivery_fee_id   | integer  | null: false                    |
+| user_id           | integer  | null: false, foreign_key: true |
+### Association
 
-* Services (job queues, cache servers, search engines, etc.)
+- belongs_to : user
+- has_one : purchase 
 
-* Deployment instructions
 
-* ...
+## addresses テーブル
+
+| Column        | Type       | Options                        |
+| ------------- | ---------- | ------------------------------ |
+| zip           | string     | null: false                    |
+| prefecture_id | integer    | null: false                    | 
+| city          | string     | null: false                    |
+| address       | string     | null: false                    |
+| build_name    | string     |                                |
+| phone_call    | string     | null: false                    |
+| purchase_id   | integer    | null: false, foreign_key: true |
+### Association
+
+- belongs_to :purchase
+
+
+
+## purchases テーブル
+| Column     | Type     | Options                        |
+| --------   | ------   | ------------------------------ |
+| user_id    | integer  | null: false, foreign_key: true | 
+| item_id    | integer  | null: false, foreign_key: true | 
+### Association
+has_one :address
+belongs_to : user
+belongs_to : item
+
