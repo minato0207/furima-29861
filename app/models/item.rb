@@ -1,2 +1,26 @@
 class Item < ApplicationRecord
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 end
