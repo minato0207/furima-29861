@@ -14,6 +14,7 @@ describe User do
         @user.password_confirmation = "00000ai"
         expect(@user).to be_valid
       end
+      
       it "last_nameとfirst_nameが全角であれば登録できる"do
         @user.last_name = "とっとこ"
         @user.first_name = "はむ太郎"
@@ -43,7 +44,11 @@ describe User do
          another_user.email = @user.email
          another_user.valid?
          expect(another_user.errors.full_messages).to include("Email has already been taken")
-         
+      end
+      it "emailは@がないと登録できない"do
+         @user.email ="hamhamham"
+         @user.valid?
+        expect(@user.errors.full_messages).to include("Email is invalid")
       end
       it "passwordが空では登録できない" do
         @user.password = ""
@@ -60,6 +65,12 @@ describe User do
         @user.valid?
         expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
       end
+      it "パスワードは半角英数字混合でないと登録できない"do
+         @user.password ="000000"
+         @user.valid?
+        expect(@user.errors.full_messages).to include("Password is invalid")
+      end
+
       it "last_nameが空では登録できない"do
         @user.last_name = ""
         @user.valid?
