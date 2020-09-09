@@ -1,5 +1,7 @@
 class ItemsController < ApplicationController
- def index
+  before_action :login_check, only: [:new, :create]
+ 
+  def index
    @items = Item.all
  end
 
@@ -8,7 +10,8 @@ class ItemsController < ApplicationController
  end
 
  def create
-  Item.create(item_params)
+  @item = Item.new(item_params)
+  @item.save
  end
 
 
@@ -17,8 +20,14 @@ class ItemsController < ApplicationController
  private
 
  def item_params
-   params.require(:item).permit(:name, :price, :image, :text, :area_id, :day_standard_id, :category_id, :delivery_fee_id, :status_id,).merge(user_id: current_user.id)
+   params.require(:item).permit(:name, :price, :image, :text, :area_id, :day_standard_id, :category_id, :delivery_fee_id, :status_id).merge(user_id: current_user.id)
  end
+
+  def login_check
+   unless user_signed_in?
+      redirect_to root_path
+    end
+  end
 
 
 
