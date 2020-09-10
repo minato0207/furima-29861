@@ -1,7 +1,8 @@
 class ItemsController < ApplicationController
   before_action :login_check, only: [:new, :create]
+  before_action :set_Item, only: [:show]
  
- def index
+  def index
    @items = Item.all.order("created_at DESC")
  end
 
@@ -19,7 +20,6 @@ class ItemsController < ApplicationController
  end
 
  def show
-   @item = Item.find(params[:id])
  end
 
 
@@ -37,6 +37,8 @@ class ItemsController < ApplicationController
     end
   end
 
-
+  def set_Item
+    @item = Item.find(params[:id])
+  end
 
 end
