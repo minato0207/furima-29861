@@ -38,7 +38,6 @@ class ItemsController < ApplicationController
  def update
    if @item.update(item_params)
      redirect_to item_path
-     # @itemに対してupdateアクションを行いましょう
    else
      render :edit
    end 
