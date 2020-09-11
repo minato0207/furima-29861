@@ -23,11 +23,11 @@ class ItemsController < ApplicationController
  end
 
  def destroy
-  if @item.destroy
-   redirect_to root_path
-  else
-    render :new
-  end
+   if @item.destroy
+     redirect_to root_path
+   else
+     render :new
+   end
  end
 
 
@@ -36,11 +36,12 @@ class ItemsController < ApplicationController
 
 
  def update
-   if @item =Item.update(item_params)
-     redirect_to root_path
-    else
+   if @item.update(item_params)
+     redirect_to item_path
+     # @itemに対してupdateアクションを行いましょう
+   else
      render :edit
-    end 
+   end 
   end
 
 
