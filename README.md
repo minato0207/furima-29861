@@ -44,19 +44,19 @@
 | Column        | Type       | Options                        |
 | ------------- | ---------- | ------------------------------ |
 | zip           | string     | null: false                    |
-| prefecture_id | integer    | null: false                    | 
+| area_id       | integer    | null: false                    | 
 | city          | string     | null: false                    |
 | address       | string     | null: false                    |
 | build_name    | string     |                                |
 | phone_call    | string     | null: false                    |
-| purchase_id   | integer    | null: false, foreign_key: true |
+| order_id      | integer    | null: false, foreign_key: true |
 ### Association
 
-- belongs_to :purchase
+- belongs_to :order
 
 
 
-## purchases テーブル
+## order テーブル
 | Column     | Type     | Options                        |
 | --------   | ------   | ------------------------------ |
 | user_id    | integer  | null: false, foreign_key: true | 
