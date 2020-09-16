@@ -6,5 +6,6 @@ FactoryBot.define do
     address                {"0000"}
     phone_call             {"11111111111"}
     build_name             {"あああああ"}
+    token                  { "tok_hoge1234" }
   end
 end
