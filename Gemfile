@@ -66,3 +66,4 @@ gem 'devise'
 gem 'pry'
 gem 'active_hash'
 gem 'payjp'
+
