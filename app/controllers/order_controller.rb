@@ -1,5 +1,5 @@
 class OrderController < ApplicationController
-  before_action :set_order 
+  before_action :set_item
   before_action :login_check, only:[:index]
  
  def index
@@ -31,7 +31,7 @@ class OrderController < ApplicationController
   end
 
 
- def set_order
+ def set_item
    @item = Item.find(params[:item_id])
  end
 
